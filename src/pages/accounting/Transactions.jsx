@@ -4,128 +4,87 @@ import DashboardLayout from "../../layouts/DashboardLayout";
 
 import DataTable from "../../components/tables/DataTable";
 
-import {
-    transactions
-} from "../../data/accounting";
+import { transactions } from "../../data/ccounting";
 
+export default function Transactions() {
+  const [filter, setFilter] = useState("All");
 
-export default function Transactions(){
+  const filteredTransactions =
+    filter === "All"
+      ? transactions
+      : transactions.filter((item) => item.type === filter);
 
-    const [filter,setFilter] = useState("All");
+  const columns = [
+    {
+      key: "id",
+      label: "Transaction ID",
+    },
 
+    {
+      key: "type",
+      label: "Type",
+    },
 
-    const filteredTransactions =
+    {
+      key: "category",
+      label: "Category",
+    },
 
-        filter === "All"
+    {
+      key: "description",
+      label: "Description",
+    },
 
-        ?
+    {
+      key: "amount",
+      label: "Amount",
+    },
 
-        transactions
+    {
+      key: "method",
+      label: "Payment Method",
+    },
 
-        :
+    {
+      key: "date",
+      label: "Date",
+    },
+  ];
 
-        transactions.filter(
-            item=>item.type===filter
-        );
+  const formattedData = filteredTransactions.map((item) => ({
+    ...item,
 
+    amount: `₦${item.amount.toLocaleString()}`,
+  }));
 
-
-    const columns=[
-
-        {
-            key:"id",
-            label:"Transaction ID"
-        },
-
-        {
-            key:"type",
-            label:"Type"
-        },
-
-        {
-            key:"category",
-            label:"Category"
-        },
-
-        {
-            key:"description",
-            label:"Description"
-        },
-
-        {
-            key:"amount",
-            label:"Amount"
-        },
-
-        {
-            key:"method",
-            label:"Payment Method"
-        },
-
-        {
-            key:"date",
-            label:"Date"
-        }
-
-    ];
-
-
-
-    const formattedData = filteredTransactions.map(item=>({
-
-        ...item,
-
-        amount:
-        `₦${item.amount.toLocaleString()}`
-
-    }));
-
-
-
-    return (
-
-        <DashboardLayout>
-
-
-            <div className="space-y-8">
-
-
-                <div className="
+  return (
+    <DashboardLayout>
+      <div className="space-y-8">
+        <div
+          className="
                 flex
                 justify-between
                 items-center
-                ">
-
-
-                    <div>
-
-                        <h1 className="
+                "
+        >
+          <div>
+            <h1
+              className="
                         text-white
                         text-3xl
                         font-bold
-                        ">
-                            Transactions
-                        </h1>
+                        "
+            >
+              Transactions
+            </h1>
 
+            <p className="text-gray-400">Complete financial activity history</p>
+          </div>
 
-                        <p className="text-gray-400">
-                            Complete financial activity history
-                        </p>
-
-                    </div>
-
-
-
-
-                    <select
-
-                    value={filter}
-
-                    onChange={
-                        e=>setFilter(e.target.value)
-                    }
-
-                    className="
+          <select
+            value={filter}
+            onChange={(e) => setFilter(e.target.value)}
+            className="
                     bg-[#181C23]
                     border
                     border-[#2A2F38]
@@ -133,48 +92,17 @@ export default function Transactions(){
                     text-white
                     p-3
                     "
+          >
+            <option>All</option>
 
-                    >
+            <option>Income</option>
 
-                        <option>
-                            All
-                        </option>
+            <option>Expense</option>
+          </select>
+        </div>
 
-                        <option>
-                            Income
-                        </option>
-
-
-                        <option>
-                            Expense
-                        </option>
-
-
-                    </select>
-
-
-
-                </div>
-
-
-
-
-
-                <DataTable
-
-                    columns={columns}
-
-                    data={formattedData}
-
-                />
-
-
-
-            </div>
-
-
-        </DashboardLayout>
-
-    );
-
+        <DataTable columns={columns} data={formattedData} />
+      </div>
+    </DashboardLayout>
+  );
 }

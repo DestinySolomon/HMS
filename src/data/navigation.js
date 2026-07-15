@@ -11,6 +11,8 @@ import {
   Utensils,
   Shirt,
 } from "lucide-react";
+import { ClipboardCheck, Clock } from "lucide-react";
+//import {...BedDouble} from "lucide-react";
 
 export const navigation = {
   admin: [
@@ -80,6 +82,22 @@ export const navigation = {
       name: "Department Report",
       path: "/admin/reports/departments",
       icon: BarChart3,
+    },
+    {
+      name: "Approvals",
+      path: "/admin/approvals",
+      icon: ClipboardCheck,
+    },
+
+    {
+      name: "Financial Snapshot",
+      path: "/admin/financial",
+      icon: Wallet,
+    },
+    {
+      name: "Activity Timeline",
+      path: "/admin/activity",
+      icon: Clock,
     },
   ],
 
@@ -229,6 +247,16 @@ export const navigation = {
       name: "Dashboard",
       path: "/supervisor",
       icon: LayoutDashboard,
+    },
+    {
+      name: "Tasks",
+      path: "/supervisor/tasks",
+      icon: ClipboardCheck,
+    },
+    {
+      name: "Room Inspection",
+      path: "/supervisor/room-inspection",
+      icon: BedDouble,
     },
   ],
 

@@ -2,95 +2,60 @@ import DashboardLayout from "../../layouts/DashboardLayout";
 
 import DataTable from "../../components/tables/DataTable";
 
-import {
-    stockMovements
-} from "../../data/stockMovements";
+import { stockMovements } from "../../data/stockMovement";
 
+export default function StockMovement() {
+  const columns = [
+    {
+      key: "id",
+      label: "Movement ID",
+    },
 
-export default function StockMovement(){
+    {
+      key: "item",
+      label: "Item",
+    },
 
+    {
+      key: "type",
+      label: "Movement",
+    },
 
-const columns=[
+    {
+      key: "quantity",
+      label: "Quantity",
+    },
 
-{
-key:"id",
-label:"Movement ID"
-},
+    {
+      key: "date",
+      label: "Date",
+    },
 
-{
-key:"item",
-label:"Item"
-},
+    {
+      key: "user",
+      label: "Recorded By",
+    },
+  ];
 
-{
-key:"type",
-label:"Movement"
-},
-
-{
-key:"quantity",
-label:"Quantity"
-},
-
-{
-key:"date",
-label:"Date"
-},
-
-{
-key:"user",
-label:"Recorded By"
-}
-
-];
-
-
-
-return (
-
-<DashboardLayout>
-
-
-<div className="space-y-8">
-
-
-<div>
-
-<h1 className="
+  return (
+    <DashboardLayout>
+      <div className="space-y-8">
+        <div>
+          <h1
+            className="
 text-white
 text-3xl
 font-bold
-">
+"
+          >
+            Stock Movement
+          </h1>
 
-Stock Movement
+          <p className="text-gray-400">Track inventory changes</p>
+        </div>
 
-</h1>
-
-
-<p className="text-gray-400">
-
-Track inventory changes
-
-</p>
-
-</div>
-
-
-
-<DataTable
-
-columns={columns}
-
-data={stockMovements}
-
-/>
-
-
-</div>
-
-
-</DashboardLayout>
-
-);
-
+        <DataTable columns={columns} data={stockMovements} />
+      </div>
+    </DashboardLayout>
+  );
 }

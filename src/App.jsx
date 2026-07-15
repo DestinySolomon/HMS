@@ -32,13 +32,19 @@ import Attendance from "./pages/hr/Attendance";
 import Payroll from "./pages/hr/Payroll";
 import OperationsDashboard from "./pages/operations/OperationsDashboard";
 import Laundry from "./pages/operations/Laundry";
-import Restaurant from "./pages/operations/Restaurant";
+import Restaurant from "./pages/operations/Restuarant";
 import ReportsDashboard from "./pages/reports/ReportsDashboard";
-import RevenueReport from "./pages/reports/RevenueReport";
-import OccupancyReport from "./pages/reports/OccupancyReport";
+import RevenueReport from "./pages/reports/RevenueReports";
+import OccupancyReport from "./pages/reports/OccupancyReports";
 import DepartmentReport from "./pages/reports/DepartmentReport";
 import SupervisorDashboard from "./pages/supervisor/SupervisorDashboard";
 import Tasks from "./pages/supervisor/Tasks";
+import RoomInspection from "./pages/supervisor/RoomInspection";
+import ExecutiveDashboard from "./pages/admin/ExecutiveDashboard";
+import Approvals from "./pages/admin/Approvals";
+import Alerts from "./pages/admin/Alerts";
+import FinancialSnapshot from "./pages/admin/FinancialSnapshot";
+import ActivityTimeline from "./pages/admin/ActivityTimeline";
 import { AuthProvider } from "./context/AuthContext.jsx";
 
 export default function App() {
@@ -374,6 +380,60 @@ export default function App() {
             element={
               <ProtectedRoute>
                 <Tasks />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/supervisor/room-inspection"
+            element={
+              <ProtectedRoute>
+                <RoomInspection />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/admin"
+            element={
+              <ProtectedRoute>
+                <ExecutiveDashboard />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/admin/approvals"
+            element={
+              <ProtectedRoute>
+                <Approvals />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/admin/alerts"
+            element={
+              <ProtectedRoute>
+                <Alerts />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/admin/financial"
+            element={
+              <ProtectedRoute>
+                <FinancialSnapshot />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/admin/activity"
+            element={
+              <ProtectedRoute>
+                <ActivityTimeline />
               </ProtectedRoute>
             }
           />

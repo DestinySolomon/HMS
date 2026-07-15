@@ -1,3 +1,4 @@
+import EmptyState from "../ui/EmptyState";
 import { useMemo, useState } from "react";
 import { Search } from "lucide-react";
 
@@ -46,7 +47,7 @@ export default function DataTable({
 
                 <thead>
 
-                    <tr className="text-left text-gray-400 border-b border-[#2A2F38]">
+                    <tr className="border-b border-[#2A2F38] hover:bg-[#1C222B] transition duration-200">
 
                         {columns.map(col=>(
                             <th
@@ -61,31 +62,85 @@ export default function DataTable({
 
                 </thead>
 
-                <tbody>
+               <tbody>
 
-                    {filteredData.map((row,index)=>(
 
-                        <tr
-                            key={index}
-                            className="border-b border-[#2A2F38] hover:bg-[#101317]"
-                        >
+{
 
-                            {columns.map(col=>(
+data.length === 0
 
-                                <td
-                                    key={col.key}
-                                    className="p-4 text-gray-200"
-                                >
-                                    {row[col.key]}
-                                </td>
+?
 
-                            ))}
+<tr>
 
-                        </tr>
+<td
 
-                    ))}
+colSpan={columns.length}
 
-                </tbody>
+>
+
+<EmptyState
+
+title="No Records Found"
+
+description="There are currently no records available."
+
+/>
+
+</td>
+
+</tr>
+
+
+:
+
+data.map((row,index)=>(
+
+<tr
+
+key={index}
+
+className="
+border-b
+border-[#2A2F38]
+hover:bg-[#1C222B]
+transition
+"
+
+>
+
+{
+
+columns.map(column=>(
+
+<td
+
+key={column.key}
+
+className="
+px-6
+py-4
+text-gray-300
+"
+
+>
+
+{row[column.key]}
+
+</td>
+
+))
+
+}
+
+</tr>
+
+))
+
+}
+
+
+</tbody>
 
             </table>
 

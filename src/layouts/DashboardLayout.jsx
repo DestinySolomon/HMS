@@ -27,9 +27,15 @@ export default function DashboardLayout({ children }) {
           }`}
         >
           <div className="border-b border-[#243041] px-6 py-7">
-            <p className="text-xs uppercase tracking-[0.35em] text-[#C8A45D]">Enterprise Suite</p>
-            <h1 className="mt-2 text-2xl font-semibold tracking-[0.2em] text-white">SUNTOS</h1>
-            <p className="mt-1 text-sm text-slate-400">Hotel Management Platform</p>
+            <p className="text-xs uppercase tracking-[0.35em] text-[#C8A45D]">
+              Enterprise Suite
+            </p>
+            <h1 className="mt-2 text-2xl font-semibold tracking-[0.2em] text-white">
+              SUNTOS
+            </h1>
+            <p className="mt-1 text-sm text-slate-400">
+              Hotel Management Platform
+            </p>
           </div>
 
           <nav className="flex-1 space-y-2 overflow-y-auto p-4">
@@ -76,38 +82,49 @@ export default function DashboardLayout({ children }) {
 
         <div className="flex-1">
           <header className="border-b border-[#243041] bg-[#0B1220]/90 px-4 py-4 backdrop-blur sm:px-6 lg:px-8">
-            <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-              <div>
-                <p className="text-sm uppercase tracking-[0.3em] text-[#C8A45D]">Operations Overview</p>
+            <div className="flex flex-col gap-4">
+              <div className="flex items-start justify-between gap-4">
+                <div className="min-w-0">
+                  <p className="text-sm uppercase tracking-[0.3em] text-[#C8A45D]">
+                    Operations Overview
+                  </p>
+                </div>
+
+                <div className="flex shrink-0 items-center gap-3">
+                  <button className="flex h-11 w-11 items-center justify-center rounded-full border border-[#243041] bg-[#101826] text-slate-300 transition hover:text-white">
+                    <Bell size={18} />
+                  </button>
+
+                  <div className="flex items-center gap-3 rounded-2xl border border-[#243041] bg-[#101826] px-4 py-3">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#C8A45D] font-semibold text-[#071018]">
+                      {user?.name?.charAt(0) || "A"}
+                    </div>
+                    <div>
+                      <p className="text-sm font-semibold text-white">
+                        {user?.name || "Admin"}
+                      </p>
+                      <p className="text-xs capitalize text-slate-400">
+                        {user?.role || "Administrator"}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="max-w-2xl">
                 <h2 className="mt-1 text-2xl font-semibold text-white">
                   Welcome back, {user?.name || "Admin"}
                 </h2>
                 <p className="text-sm text-slate-400">
-                  {user?.role ? `${user.role} portal` : "Suntos Hotel Management System"}
+                  {user?.role
+                    ? `${user.role} portal`
+                    : "Suntos Hotel Management System"}
                 </p>
-              </div>
-
-              <div className="flex items-center gap-3">
-                <button className="flex h-11 w-11 items-center justify-center rounded-full border border-[#243041] bg-[#101826] text-slate-300 transition hover:text-white">
-                  <Bell size={18} />
-                </button>
-
-                <div className="flex items-center gap-3 rounded-2xl border border-[#243041] bg-[#101826] px-4 py-3">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#C8A45D] font-semibold text-[#071018]">
-                    {user?.name?.charAt(0) || "A"}
-                  </div>
-                  <div>
-                    <p className="text-sm font-semibold text-white">{user?.name || "Admin"}</p>
-                    <p className="text-xs capitalize text-slate-400">{user?.role || "Administrator"}</p>
-                  </div>
-                </div>
               </div>
             </div>
           </header>
 
-          <main className="p-4 sm:p-6 lg:p-8">
-            {children}
-          </main>
+          <main className="p-4 sm:p-6 lg:p-8">{children}</main>
         </div>
       </div>
     </div>

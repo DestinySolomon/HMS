@@ -1,263 +1,144 @@
 import {
-
-LineChart,
-Line,
-BarChart,
-Bar,
-XAxis,
-YAxis,
-CartesianGrid,
-Tooltip,
-ResponsiveContainer
-
+  LineChart,
+  Line,
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer,
 } from "recharts";
 
-
 import {
-
-revenueData,
-occupancyData,
-departmentPerformance
-
+  revenueData,
+  occupancyData,
+  departmentPerformance,
 } from "../../data/reports";
 
-
-
-export default function AnalyticsCharts(){
-
-
-return (
-
-<div className="space-y-8">
-
-
-<div className="
+export default function AnalyticsCharts() {
+  return (
+    <div className="space-y-8">
+      <div
+        className="
 grid
-grid-cols-2
+grid-cols-1
+md:grid-cols-2
 gap-6
-">
-
-
-<div className="
+"
+      >
+        <div
+          className="
 bg-[#181C23]
 border
 border-[#2A2F38]
 rounded-xl
 p-6
-">
-
-
-<h2 className="
+"
+        >
+          <h2
+            className="
 text-white
 font-bold
 mb-5
-">
+"
+          >
+            Revenue Trend
+          </h2>
 
-Revenue Trend
+          <ResponsiveContainer width="100%" height={250}>
+            <LineChart data={revenueData}>
+              <CartesianGrid strokeDasharray="3 3" />
 
-</h2>
+              <XAxis dataKey="month" />
 
+              <YAxis />
 
+              <Tooltip />
 
-<ResponsiveContainer
+              <Line
+                type="monotone"
+                dataKey="revenue"
+                stroke="#C8A45D"
+                strokeWidth={3}
+              />
+            </LineChart>
+          </ResponsiveContainer>
+        </div>
 
-width="100%"
-
-height={300}
-
->
-
-
-<LineChart
-
-data={revenueData}
-
->
-
-
-<CartesianGrid strokeDasharray="3 3"/>
-
-
-<XAxis dataKey="month"/>
-
-
-<YAxis/>
-
-
-<Tooltip/>
-
-
-<Line
-
-type="monotone"
-
-dataKey="revenue"
-
-stroke="#C8A45D"
-
-strokeWidth={3}
-
-/>
-
-
-</LineChart>
-
-
-</ResponsiveContainer>
-
-
-</div>
-
-
-
-
-
-<div className="
+        <div
+          className="
 bg-[#181C23]
 border
 border-[#2A2F38]
 rounded-xl
 p-6
-">
-
-
-<h2 className="
+"
+        >
+          <h2
+            className="
 text-white
 font-bold
 mb-5
-">
+"
+          >
+            Occupancy Trend
+          </h2>
 
-Occupancy Trend
+          <ResponsiveContainer width="100%" height={250}>
+            <LineChart data={occupancyData}>
+              <CartesianGrid strokeDasharray="3 3" />
 
-</h2>
+              <XAxis dataKey="month" />
 
+              <YAxis />
 
+              <Tooltip />
 
-<ResponsiveContainer
+              <Line
+                type="monotone"
+                dataKey="occupancy"
+                stroke="#C8A45D"
+                strokeWidth={3}
+              />
+            </LineChart>
+          </ResponsiveContainer>
+        </div>
+      </div>
 
-width="100%"
-
-height={300}
-
->
-
-
-<LineChart
-
-data={occupancyData}
-
->
-
-
-<CartesianGrid strokeDasharray="3 3"/>
-
-
-<XAxis dataKey="month"/>
-
-
-<YAxis/>
-
-
-<Tooltip/>
-
-
-<Line
-
-type="monotone"
-
-dataKey="occupancy"
-
-stroke="#C8A45D"
-
-strokeWidth={3}
-
-/>
-
-
-</LineChart>
-
-
-</ResponsiveContainer>
-
-
-</div>
-
-
-</div>
-
-
-
-
-
-<div className="
+      <div
+        className="
 bg-[#181C23]
 border
 border-[#2A2F38]
 rounded-xl
 p-6
-">
-
-
-<h2 className="
+"
+      >
+        <h2
+          className="
 text-white
 font-bold
 mb-5
-">
+"
+        >
+          Department Performance
+        </h2>
 
-Department Performance
+        <ResponsiveContainer width="100%" height={300}>
+          <BarChart data={departmentPerformance}>
+            <CartesianGrid strokeDasharray="3 3" />
 
-</h2>
+            <XAxis dataKey="department" />
 
+            <YAxis />
 
+            <Tooltip />
 
-<ResponsiveContainer
-
-width="100%"
-
-height={350}
-
->
-
-
-<BarChart
-
-data={departmentPerformance}
-
->
-
-
-<CartesianGrid strokeDasharray="3 3"/>
-
-
-<XAxis dataKey="department"/>
-
-
-<YAxis/>
-
-
-<Tooltip/>
-
-
-<Bar
-
-dataKey="revenue"
-
-/>
-
-
-</BarChart>
-
-
-</ResponsiveContainer>
-
-
-</div>
-
-
-
-
-</div>
-
-);
-
+            <Bar dataKey="revenue" />
+          </BarChart>
+        </ResponsiveContainer>
+      </div>
+    </div>
+  );
 }

@@ -3,7 +3,7 @@ import { useState } from "react";
 import DashboardLayout from "../../layouts/DashboardLayout";
 
 import { getAvailableRooms } from "../../services/roomService";
-import { useHotel } from "../../store/HotelContext";
+import { useHotel } from "../../store/useHotel";
 
 export default function CheckIn() {
   const [guest, setGuest] = useState({
@@ -13,7 +13,7 @@ export default function CheckIn() {
     room: "",
   });
 
-    const { addGuest } = useHotel();
+  const { addGuest } = useHotel();
   const rooms = getAvailableRooms();
 
   const handleChange = (e) => {

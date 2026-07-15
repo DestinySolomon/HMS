@@ -1,117 +1,77 @@
 import DashboardLayout from "../../layouts/DashboardLayout";
 
 import DataTable from "../../components/tables/DataTable";
+import ErrorBoundary from "../../components/ErrorBoundary";
 
 import StatusBadge from "../../components/ui/StatusBadge";
 
+import { employees } from "../../data/employees";
 
-import {
-    employees
-} from "../../data/employees";
+export default function Employees() {
+  const columns = [
+    {
+      key: "id",
+      label: "Employee ID",
+    },
 
+    {
+      key: "name",
+      label: "Name",
+    },
 
-export default function Employees(){
+    {
+      key: "department",
+      label: "Department",
+    },
 
+    {
+      key: "position",
+      label: "Position",
+    },
 
-const columns=[
+    {
+      key: "phone",
+      label: "Phone",
+    },
 
-{
-key:"id",
-label:"Employee ID"
-},
+    {
+      key: "status",
+      label: "Status",
+    },
+  ];
 
-{
-key:"name",
-label:"Name"
-},
+  const data = employees.map((employee) => ({
+    ...employee,
 
-{
-key:"department",
-label:"Department"
-},
+    status: <StatusBadge status={employee.status} />,
+  }));
 
-{
-key:"position",
-label:"Position"
-},
-
-{
-key:"phone",
-label:"Phone"
-},
-
-{
-key:"status",
-label:"Status"
-}
-
-];
-
-
-
-const data = employees.map(employee=>({
-
-...employee,
-
-
-status:(
-
-<StatusBadge
-
-status={employee.status}
-
-/>
-
-)
-
-}));
-
-
-
-return (
-
-<DashboardLayout>
-
-
-<div className="space-y-8">
-
-
-<div
-className="
+  return (
+    <DashboardLayout>
+      <div className="space-y-8">
+        <div
+          className="
 flex
 justify-between
 items-center
 "
->
-
-
-<div>
-
-<h1 className="
+        >
+          <div>
+            <h1
+              className="
 text-white
 text-3xl
 font-bold
-">
+"
+            >
+              Employees
+            </h1>
 
-Employees
+            <p className="text-gray-400">Manage hotel workforce</p>
+          </div>
 
-</h1>
-
-
-<p className="text-gray-400">
-
-Manage hotel workforce
-
-</p>
-
-</div>
-
-
-
-
-<button
-
-className="
+          <button
+            className="
 bg-[#C8A45D]
 text-black
 px-5
@@ -119,35 +79,15 @@ py-3
 rounded-lg
 font-semibold
 "
+          >
+            Add Employee
+          </button>
+        </div>
 
->
-
-Add Employee
-
-</button>
-
-
-
-</div>
-
-
-
-
-<DataTable
-
-columns={columns}
-
-data={data}
-
-/>
-
-
-
-</div>
-
-
-</DashboardLayout>
-
-);
-
+        <ErrorBoundary>
+          <DataTable columns={columns} data={data} />
+        </ErrorBoundary>
+      </div>
+    </DashboardLayout>
+  );
 }

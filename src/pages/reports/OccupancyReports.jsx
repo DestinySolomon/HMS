@@ -2,269 +2,150 @@ import DashboardLayout from "../../layouts/DashboardLayout";
 
 import StatCard from "../../components/ui/StatCard";
 
-import {
-    BedDouble,
-    DoorOpen,
-    Users
-} from "lucide-react";
-
+import { BedDouble, DoorOpen, Users } from "lucide-react";
 
 import {
-    roomOccupancy,
-    occupancyTrend,
-    roomStatus
+  roomOccupancy,
+  occupancyTrend,
+  roomStatus,
 } from "../../data/occupancy";
 
-
 import {
-
-LineChart,
-Line,
-XAxis,
-YAxis,
-CartesianGrid,
-Tooltip,
-ResponsiveContainer,
-BarChart,
-Bar
-
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer,
+  BarChart,
+  Bar,
 } from "recharts";
 
+export default function OccupancyReport() {
+  const percentage = Math.round(
+    (roomOccupancy.occupiedRooms / roomOccupancy.totalRooms) * 100,
+  );
 
-
-export default function OccupancyReport(){
-
-
-const percentage = Math.round(
-
-(roomOccupancy.occupiedRooms /
-roomOccupancy.totalRooms) * 100
-
-);
-
-
-
-return (
-
-<DashboardLayout>
-
-
-<div className="space-y-8">
-
-
-<div>
-
-<h1 className="
+  return (
+    <DashboardLayout>
+      <div className="space-y-8">
+        <div>
+          <h1
+            className="
 text-white
 text-3xl
 font-bold
-">
+"
+          >
+            Occupancy Report
+          </h1>
 
-Occupancy Report
+          <p className="text-gray-400">Hotel room utilization analysis</p>
+        </div>
 
-</h1>
-
-
-<p className="text-gray-400">
-
-Hotel room utilization analysis
-
-</p>
-
-</div>
-
-
-
-
-<div className="
+        <div
+          className="
 grid
-grid-cols-3
+grid-cols-1
+md:grid-cols-2
+xl:grid-cols-4
 gap-6
-">
+"
+        >
+          <StatCard
+            title="Total Rooms"
+            value={roomOccupancy.totalRooms}
+            icon={<BedDouble />}
+          />
 
+          <StatCard
+            title="Occupied Rooms"
+            value={roomOccupancy.occupiedRooms}
+            icon={<Users />}
+          />
 
-<StatCard
+          <StatCard
+            title="Available Rooms"
+            value={roomOccupancy.availableRooms}
+            icon={<DoorOpen />}
+          />
 
-title="Total Rooms"
+          <StatCard
+            title="Occupancy Rate"
+            value={`${percentage}%`}
+            icon={<BedDouble />}
+          />
+        </div>
 
-value={roomOccupancy.totalRooms}
-
-icon={<BedDouble/>}
-
-/>
-
-
-
-<StatCard
-
-title="Occupied Rooms"
-
-value={roomOccupancy.occupiedRooms}
-
-icon={<Users/>}
-
-/>
-
-
-
-<StatCard
-
-title="Available Rooms"
-
-value={roomOccupancy.availableRooms}
-
-icon={<DoorOpen/>}
-
-/>
-
-
-
-</div>
-
-
-
-
-
-<div className="
+        <div
+          className="
 bg-[#181C23]
 border
 border-[#2A2F38]
 rounded-xl
 p-6
-">
-
-
-<h2 className="
+"
+        >
+          <h2
+            className="
 text-white
 font-bold
 mb-5
-">
+"
+          >
+            Occupancy Trend
+          </h2>
 
-Occupancy Trend
+          <ResponsiveContainer width="100%" height={300}>
+            <LineChart data={occupancyTrend}>
+              <CartesianGrid strokeDasharray="3 3" />
 
-</h2>
+              <XAxis dataKey="month" />
 
+              <YAxis />
 
+              <Tooltip />
 
-<ResponsiveContainer
+              <Line type="monotone" dataKey="occupancy" strokeWidth={3} />
+            </LineChart>
+          </ResponsiveContainer>
+        </div>
 
-width="100%"
-
-height={300}
-
->
-
-
-<LineChart
-
-data={occupancyTrend}
-
->
-
-
-<CartesianGrid strokeDasharray="3 3"/>
-
-
-<XAxis dataKey="month"/>
-
-
-<YAxis/>
-
-
-<Tooltip/>
-
-
-<Line
-
-type="monotone"
-
-dataKey="occupancy"
-
-strokeWidth={3}
-
-/>
-
-
-</LineChart>
-
-
-</ResponsiveContainer>
-
-
-</div>
-
-
-
-
-
-<div className="
+        <div
+          className="
 bg-[#181C23]
 border
 border-[#2A2F38]
 rounded-xl
 p-6
-">
-
-
-<h2 className="
+"
+        >
+          <h2
+            className="
 text-white
 font-bold
 mb-5
-">
+"
+          >
+            Room Status
+          </h2>
 
-Room Status
+          <ResponsiveContainer width="100%" height={300}>
+            <BarChart data={roomStatus}>
+              <CartesianGrid strokeDasharray="3 3" />
 
-</h2>
+              <XAxis dataKey="status" />
 
+              <YAxis />
 
+              <Tooltip />
 
-<ResponsiveContainer
-
-width="100%"
-
-height={300}
-
->
-
-
-<BarChart
-
-data={roomStatus}
-
->
-
-
-<CartesianGrid strokeDasharray="3 3"/>
-
-
-<XAxis dataKey="status"/>
-
-
-<YAxis/>
-
-
-<Tooltip/>
-
-
-<Bar dataKey="count"/>
-
-
-</BarChart>
-
-
-</ResponsiveContainer>
-
-
-</div>
-
-
-
-
-</div>
-
-
-</DashboardLayout>
-
-);
-
+              <Bar dataKey="count" />
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
+      </div>
+    </DashboardLayout>
+  );
 }

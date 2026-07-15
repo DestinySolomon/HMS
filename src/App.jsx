@@ -127,6 +127,15 @@ export default function App() {
           />
 
           <Route
+            path="/admin/reservations"
+            element={
+              <ProtectedRoute>
+                <Reservations />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
             path="/reception/checkin"
             element={
               <ProtectedRoute>
@@ -185,6 +194,15 @@ export default function App() {
             element={
               <ProtectedRoute>
                 <Guests />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/admin/employees"
+            element={
+              <ProtectedRoute>
+                <Employees />
               </ProtectedRoute>
             }
           />

@@ -111,3 +111,14 @@ code {
   padding: 4px 8px;
   background: var(--code-bg);
 }
+
+.input{
+
+width:100%;
+background:#101317;
+border:1px solid #2A2F38;
+padding:12px;
+border-radius:8px;
+color:white;
+
+}

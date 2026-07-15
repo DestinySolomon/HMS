@@ -15,7 +15,7 @@ import Folio from "./pages/reception/Folio";
 import Receipt from "./pages/reception/Receipt";
 import Reservations from "./pages/reception/Reservations";
 import NewReservation from "./pages/reception/NewReservation";
-import Checkout from "./pages/reception/Checkout";
+import Checkout from "./pages/reception/Checkout.jsx";
 import Guests from "./pages/Guests";
 import AccountingDashboard from "./pages/accounting/AccountingDashboard";
 import Transactions from "./pages/accounting/Transactions";
